@@ -1,0 +1,18 @@
+.cs-table-row{
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
+.cs-table-row p{
+  width: 33%;
+
+}
+.cs-table-row p:first-child{
+  text-align: start;
+  padding-left: 5px;
+}
+
+.cs-table-row:first-child,.cs-table-row:nth-child(3),.cs-table-row:nth-child(4){
+  font-weight: bold;
+  
+}
