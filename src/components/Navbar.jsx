@@ -19,7 +19,7 @@ const Navbar = () => {
                <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
             </svg>
          </button>
-        <Link to="/" className="flex ms-2 md:me-24">
+        <Link to="/PIZZA/7" className="flex ms-2 md:me-24">
           <img src="https://i.pinimg.com/originals/16/1f/cd/161fcda88bb08717334cdb15c1ebafe0.jpg" className="h-12 me-3 rounded-full" alt="FlowBite Logo" />
           <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">RANGER POS</span>
         </Link>

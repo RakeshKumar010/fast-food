@@ -59,9 +59,9 @@ const Items = () => {
                       </div>
 
                       <img
-                        src="https://media.self.com/photos/622912847b959736301bfb91/master/pass/GettyImages-1301412050.jpg"
+                        src="https://i.pinimg.com/1200x/f4/77/3e/f4773e68cf3c8b68f804c8dce6a4d901.jpg"
                         alt="..."
-                        className="w-1/6 rounded-md"
+                        className="w-1/6 rounded-md h-full"
                       />
                     </div>
                   </>

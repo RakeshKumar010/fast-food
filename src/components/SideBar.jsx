@@ -1,11 +1,11 @@
 import { MdOutlineMapsHomeWork, MdOutlineFastfood } from "react-icons/md";
-
 import {
-  IoFastFoodOutline,
+  
   IoCreateSharp,
   IoIceCream,
   IoFastFood,
 } from "react-icons/io5";
+import { FaCreativeCommonsRemix } from "react-icons/fa";
 import { PiBowlFoodFill } from "react-icons/pi";
 import {
   GiOpenedFoodCan,
@@ -16,8 +16,11 @@ import {
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
+
 const SideBar = () => {
   const { navShow, data } = useContext(UserContext);
+  const arr=[GiFullPizza,IoIceCream,FaCreativeCommonsRemix,IoFastFood,GiOpenedFoodCan,GiFruitBowl,PiBowlFoodFill,GiMilkCarton,IoCreateSharp];
+  let iconIndex = 0;
 
   return (
     <>
@@ -34,7 +37,8 @@ const SideBar = () => {
           <ul className="space-y-2 font-medium">
             {data &&
               data.map(({ categoryDescription, id }) => {
-                // console.log(value.categoryDescription);
+                const Icon = arr[iconIndex];
+                iconIndex = (iconIndex + 1) % arr.length;
                 return (
                   <>
                     <li>
@@ -42,7 +46,7 @@ const SideBar = () => {
                         to={"/" + categoryDescription + "/" + id}
                         className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                       >
-                        <GiFullPizza />
+                        <Icon />
                         <span className="ms-3 capitalize ">
                           {categoryDescription}
                         </span>
