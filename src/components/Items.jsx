@@ -48,7 +48,7 @@ const Items = () => {
               data.map(({ productName,productDescription,pricedesc }) => {
                 return (
                   <>
-                    <div className=" bg-gray-300 flex text-black justify-between items-center p-4 rounded-md w-96 ">
+                    <div className=" bg-gray-300 flex text-black justify-between items-center p-4 rounded-md lg:w-96 w-full ">
                       <div className="flex flex-col gap-6 ml-2">
                         <div>
                           <p className="text-lg font-bold">{productName}</p>
@@ -61,92 +61,13 @@ const Items = () => {
                       <img
                         src="https://i.pinimg.com/1200x/f4/77/3e/f4773e68cf3c8b68f804c8dce6a4d901.jpg"
                         alt="..."
-                        className="w-1/6 rounded-md h-full"
+                        className="lg:w-1/6 w-1/4 rounded-md lg:h-full"
                       />
                     </div>
                   </>
                 );
               })}
-            {/* <div className=" bg-gray-600 flex text-white justify-between items-center p-4 rounded-md  ">
-              <div className="flex flex-col gap-6">
-                <div>
-                  <p className="text-xl">1. CHEESE PIZZA</p>
-                  <p className="text-sm">Cheese</p>
-                </div>
-
-                <p>S: $11.99 M: $14.99 L: $17.99 XL: $21.99 P: $9.99</p>
-              </div>
-
-              <img
-                src="https://media.self.com/photos/622912847b959736301bfb91/master/pass/GettyImages-1301412050.jpg"
-                alt="..."
-                className="w-1/6 rounded-md"
-              />
-            </div>
-             <div className=" bg-gray-600 flex text-white justify-between items-center p-4 rounded-md  ">
-              <div className="flex flex-col gap-6">
-                <div>
-                  <p className="text-xl">1. CHEESE PIZZA</p>
-                  <p className="text-sm">Cheese</p>
-                </div>
-
-                <p>S: $11.99 M: $14.99 L: $17.99 XL: $21.99 P: $9.99</p>
-              </div>
-
-              <img
-                src="https://media.self.com/photos/622912847b959736301bfb91/master/pass/GettyImages-1301412050.jpg"
-                alt="..."
-                className="w-1/6 rounded-md"
-              />
-            </div>
-            <div className=" bg-gray-600 flex text-white justify-between items-center p-4 rounded-md  ">
-              <div className="flex flex-col gap-6">
-                <div>
-                  <p className="text-xl">1. CHEESE PIZZA</p>
-                  <p className="text-sm">Cheese</p>
-                </div>
-
-                <p>S: $11.99 M: $14.99 L: $17.99 XL: $21.99 P: $9.99</p>
-              </div>
-
-              <img
-                src="https://media.self.com/photos/622912847b959736301bfb91/master/pass/GettyImages-1301412050.jpg"
-                alt="..."
-                className="w-1/6 rounded-md"
-              />
-            </div>
-            <div className=" bg-gray-600 flex text-white justify-between items-center p-4 rounded-md  ">
-              <div className="flex flex-col gap-6">
-                <div>
-                  <p className="text-xl">1. CHEESE PIZZA</p>
-                  <p className="text-sm">Cheese</p>
-                </div>
-
-                <p>S: $11.99 M: $14.99 L: $17.99 XL: $21.99 P: $9.99</p>
-              </div>
-
-              <img
-                src="https://media.self.com/photos/622912847b959736301bfb91/master/pass/GettyImages-1301412050.jpg"
-                alt="..."
-                className="w-1/6 rounded-md"
-              />
-            </div>
-            <div className=" bg-gray-600 flex text-white justify-between items-center p-4 rounded-md  ">
-              <div className="flex flex-col gap-6">
-                <div>
-                  <p className="text-xl">1. CHEESE PIZZA</p>
-                  <p className="text-sm">Cheese</p>
-                </div>
-
-                <p>S: $11.99 M: $14.99 L: $17.99 XL: $21.99 P: $9.99</p>
-              </div>
-
-              <img
-                src="https://media.self.com/photos/622912847b959736301bfb91/master/pass/GettyImages-1301412050.jpg"
-                alt="..."
-                className="w-1/6 rounded-md"
-              />
-            </div> */}
+          
           </div>
         </div>
         <Orders />
