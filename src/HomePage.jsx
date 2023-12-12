@@ -6,6 +6,7 @@ import FullPage from './components/FullPage'
 import Navbar from './components/Navbar'
 
 const HomePage = () => {
+  
   return (
     <>
     <Navbar/>

@@ -5,7 +5,7 @@ const Orders = () => {
       style={{ width: "27vw" }}
     >
       <div>
-        <div className="flex justify-between cs-table-row">
+        <div className="flex justify-between cs-table-row ">
           <p>Product</p>
           <p>Qty</p>
           <p>Total </p>

@@ -1,17 +1,14 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import HomePage from './HomePage'
-import UserContextProvider from './context/UserContextProvider'
 
+import UserContextProvider from './context/UserContextProvider'
+import Layout from './layout/Layout'
+
+import './App.css'
 const App = () => {
+
   return (
     <UserContextProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route index element={<HomePage/>}/>
-      </Routes>
-    </BrowserRouter>
+    <Layout/>
     </UserContextProvider>
   )
 }
