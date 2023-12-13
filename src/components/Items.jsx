@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Orders from "./Orders";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import OrderType from "./OrderType";
+import UserContext from "../context/UserContext";
 const Items = () => {
   const [data, setData] = useState(null);
   // Declare a state variable to store the loading status
   const [loading, setLoading] = useState(true);
 
-  const { id } = useParams()
+  const { id } = useParams();
+
+  const {ordType , setOrdType} = useContext(UserContext)
 
   const fetchData = async () => {
     try {
@@ -42,17 +46,24 @@ const Items = () => {
   return (
     <>
       <div className="p-4 sm:ml-64 flex justify-between items-start">
-        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14  lg:w-2/3">
+        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14  lg:w-2/3 cursor-pointer">
           <div className=" flex justify-between flex-wrap gap-3">
             {data &&
-              data.map(({ productName,productDescription,pricedesc }) => {
+              data.map(({ productName, productDescription, pricedesc }) => {
                 return (
                   <>
-                    <div className=" bg-gray-300 flex text-black justify-between items-center p-4 rounded-md lg:w-96 w-full ">
+                    <div
+                      onClick={() => {
+                        setOrdType(true);
+                      }}
+                      className=" bg-gray-300 flex text-black justify-between items-center p-4 rounded-md lg:w-96 w-full "
+                    >
                       <div className="flex flex-col gap-6 ml-2">
                         <div>
                           <p className="text-lg font-bold">{productName}</p>
-                          <p className="text-sm lowercase">{productDescription}</p>
+                          <p className="text-sm lowercase">
+                            {productDescription}
+                          </p>
                         </div>
 
                         <p>{pricedesc}</p>
@@ -67,11 +78,11 @@ const Items = () => {
                   </>
                 );
               })}
-          
           </div>
         </div>
         <Orders />
       </div>
+      {ordType ? <OrderType /> : null}
     </>
   );
 };
