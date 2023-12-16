@@ -23,7 +23,7 @@ const ProductDetails = ({ h, p }) => {
                 setProDetails(false);
               }}
             />
-            <div className=" flex flex-col justify-between h-full">
+            <div className=" flex gap-7 flex-col justify-between h-full">
               <div>
                 <h1 className="text-2xl font-bold">{h}</h1>
                 <p>{p}</p>

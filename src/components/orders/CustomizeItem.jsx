@@ -71,7 +71,7 @@ const CustomizeItem = () => {
   ];
   return (
     <>
-      <div className="lg:w-1/2 w-full lg:h-3/4 overflow-y-scroll bg-gray-50 rounded-lg shadow-sm-light shadow-gray-500 relative">
+      <div className="lg:w-1/2 w-full lg:h-3/4 h-full overflow-y-scroll bg-gray-50 rounded-lg shadow-sm-light shadow-gray-500 relative">
      
         <div className="flex p-4 gap-6 border-b-2 border-black">
           <Link className="select-none"
