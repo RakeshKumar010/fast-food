@@ -64,7 +64,7 @@ const Items = () => {
                         setP(productDescription)
                         setProDetails(true);
                       }}
-                      className=" bg-gray-300 flex text-black justify-between items-center p-4 rounded-md lg:w-custom w-full "
+                      className=" bg-gray-300 flex text-black justify-between items-center p-4 rounded-md  lg:w-custom w-full "
                     >
                       <div className="flex flex-col gap-6 ml-2">
                         <div>

@@ -4,9 +4,9 @@ import { ImCancelCircle } from "react-icons/im";
 import CustomizeItem from "./CustomizeItem";
 
 const ProductDetails = ({ h, p }) => {
-  const { setProDetails } = useContext(UserContext);
   const [count, setCount] = useState(1);
-  const [customize, setCustomize] = useState(false);
+  const { setProDetails,customize, setCustomize } = useContext(UserContext);
+
   return (
     <>
       <div className="flex justify-center items-center w-full h-full fixed right-0 top-0  backdrop-blur-md  z-50">
@@ -15,7 +15,7 @@ const ProductDetails = ({ h, p }) => {
             <CustomizeItem />
           </>
         ) : (
-          <div className="lg:w-1/2 w-full lg:h-3/4 bg-gray-50 rounded-lg shadow-sm-light shadow-gray-500 relative">
+          <div className="lg:w-1/2 w-full lg:h-3/4 bg-gray-50 rounded-lg shadow-sm-light lg:p-4 shadow-gray-500 relative">
             <ImCancelCircle
               size={25}
               className="absolute right-0 top-0"
@@ -23,12 +23,12 @@ const ProductDetails = ({ h, p }) => {
                 setProDetails(false);
               }}
             />
-            <div className="p-5 flex flex-col justify-between gap-7">
+            <div className=" flex flex-col justify-between h-full">
               <div>
                 <h1 className="text-2xl font-bold">{h}</h1>
                 <p>{p}</p>
               </div>
-              <div className="flex justify-between gap-7 ">
+              <div className="flex justify-between lg:gap-7 gap-1 ">
                 <fieldset className="border-2 px-3 w-1/2 border-black rounded-md">
                   <legend>Size</legend>
                   <select
@@ -61,7 +61,7 @@ const ProductDetails = ({ h, p }) => {
                 placeholder="Note"
               ></textarea>
 
-              <div className="flex border-2 border-black w-min m-auto rounded-md">
+              <div className="flex border-2 border-black w-min mx-auto rounded-md">
                 <p
                   onClick={() => {
                     if (count > 1) {
@@ -83,7 +83,7 @@ const ProductDetails = ({ h, p }) => {
                   +
                 </p>
               </div>
-              <div className="absolute bottom-0 border-t-2 w-full flex justify-between right-0 p-3">
+              <div className=" border-t-2 w-full flex justify-between lg:p-3">
                 <button
                   className="bg-green-500 text-white p-2 rounded-md"
                   onClick={() => {

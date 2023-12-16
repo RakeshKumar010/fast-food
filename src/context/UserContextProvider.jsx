@@ -10,6 +10,7 @@ const UserContextProvider = ({children}) => {
    const [loading, setLoading] = useState(true);
  
    const [proDetails, setProDetails] = useState(false);
+   const [customize, setCustomize] = useState(false);
  
  
    const fetchData = async () => {
@@ -46,7 +47,7 @@ const UserContextProvider = ({children}) => {
    }, []);
 
   return (
-    <UserContext.Provider value={{navShow,setNavShow,data,proDetails, setProDetails,loading}}>
+    <UserContext.Provider value={{navShow,setNavShow,data,proDetails, setProDetails,loading,customize, setCustomize}}>
     {children}
     </UserContext.Provider>
   )

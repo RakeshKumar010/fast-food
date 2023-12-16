@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       width: {
-        'custom': '49.2%', // You can set this to any value you want
+        'custom': '49%', // You can set this to any value you want
       }
     }
   },

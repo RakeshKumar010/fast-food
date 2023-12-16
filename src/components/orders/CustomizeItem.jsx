@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Veggie from "./Customize/Veggie";
+import { ImCancelCircle } from "react-icons/im";
+import UserContext from "../../context/UserContext";
 
 const CustomizeItem = () => {
   const [veggie, setVeggie] = useState(true);
   const [meat, setMeat] = useState(false);
   const [cheese, setCheese] = useState(false);
   const [sauce, setSauce] = useState(false);
-
+  
+  const { customize, setCustomize } = useContext(UserContext);
   const veggieItems = [
     "ALMONDS $(0.99)",
     "BANANA PEPPER $(0.99)",
@@ -69,8 +72,9 @@ const CustomizeItem = () => {
   return (
     <>
       <div className="lg:w-1/2 w-full lg:h-3/4 overflow-y-scroll bg-gray-50 rounded-lg shadow-sm-light shadow-gray-500 relative">
+     
         <div className="flex p-4 gap-6 border-b-2 border-black">
-          <Link
+          <Link className="select-none"
             onClick={() => {
               setVeggie(true);
               setMeat(false);
@@ -81,7 +85,7 @@ const CustomizeItem = () => {
           >
             VEGGIE
           </Link>
-          <Link
+          <Link className="select-none"
             onClick={() => {
               setMeat(true);
               setVeggie(false);
@@ -92,7 +96,7 @@ const CustomizeItem = () => {
           >
             MEAT
           </Link>
-          <Link
+          <Link className="select-none"
             onClick={() => {
               setCheese(true);
               setVeggie(false);
@@ -103,7 +107,8 @@ const CustomizeItem = () => {
           >
             CHEESE
           </Link>
-          <Link onClick={()=>{
+          <Link className="select-none"
+           onClick={()=>{
             setSauce(true)
             setCheese(false);
             setVeggie(false);
@@ -116,6 +121,20 @@ const CustomizeItem = () => {
           {cheese ? <Veggie items={cheeseItem} /> : null}
           {sauce ? <Veggie items={sauceItem } /> : null}
         </div>
+        <div className=" border-t-2 w-full flex justify-between lg:p-3">
+                <button
+                  className="bg-green-500 text-white p-2 px-6 rounded-md"
+                  onClick={() => {
+                    setCustomize(false)
+                  }}
+                >
+                  BACK
+                </button>
+                
+                <button className="bg-green-500 text-white p-2 rounded-md">
+                  ADD TO CART
+                </button>
+              </div>
       </div>
     </>
   );
