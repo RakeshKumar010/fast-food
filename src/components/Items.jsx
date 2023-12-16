@@ -42,9 +42,9 @@ const Items = () => {
     }
   };
   useEffect(() => {
-    setTimeout(() => {
+ 
       fetchData();
-    }, 3000);
+  
   }, [id]);
 
   return (

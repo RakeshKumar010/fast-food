@@ -39,10 +39,10 @@ const UserContextProvider = ({children}) => {
      }
    };
    useEffect(() => {
-    setTimeout(() => {
+  
       
       fetchData();
-    }, 3000);
+ 
    }, []);
 
   return (
