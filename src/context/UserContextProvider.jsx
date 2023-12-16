@@ -39,11 +39,14 @@ const UserContextProvider = ({children}) => {
      }
    };
    useEffect(() => {
-     fetchData();
+    setTimeout(() => {
+      
+      fetchData();
+    }, 3000);
    }, []);
 
   return (
-    <UserContext.Provider value={{navShow,setNavShow,data,ordType, setOrdType}}>
+    <UserContext.Provider value={{navShow,setNavShow,data,ordType, setOrdType,loading}}>
     {children}
     </UserContext.Provider>
   )

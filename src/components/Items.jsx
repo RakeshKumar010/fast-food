@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import OrderType from "./OrderType";
 import UserContext from "../context/UserContext";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 const Items = () => {
   const [data, setData] = useState(null);
   // Declare a state variable to store the loading status
@@ -11,7 +13,7 @@ const Items = () => {
 
   const { id } = useParams();
 
-  const {ordType , setOrdType} = useContext(UserContext)
+  const { ordType, setOrdType } = useContext(UserContext);
 
   const fetchData = async () => {
     try {
@@ -40,7 +42,9 @@ const Items = () => {
     }
   };
   useEffect(() => {
-    fetchData();
+    setTimeout(() => {
+      fetchData();
+    }, 3000);
   }, [id]);
 
   return (
@@ -48,7 +52,201 @@ const Items = () => {
       <div className="p-4 sm:ml-64 flex justify-between items-start">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14  lg:w-2/3 cursor-pointer">
           <div className=" flex justify-between flex-wrap gap-3">
-            {data &&
+            {loading ? (
+              <>
+                <div className=" bg-gray-300 flex justify-between items-center  p-4 rounded-md lg:w-96 w-full ">
+              
+
+                  <div className="">
+                    <div className="mb-6">
+                    
+                        <Skeleton className="p-1 w-60 mb-1" />
+                    
+                   
+                        <Skeleton className="w-20 "  />
+                  
+                    </div>
+
+                  
+                      <Skeleton className="p-2 w-64" />
+                  
+                  </div>
+                  <Skeleton className="p-2 w-16 h-32" />
+                </div>
+                <div className=" bg-gray-300 flex justify-between items-center  p-4 rounded-md lg:w-96 w-full ">
+              
+
+                  <div className="">
+                    <div className="mb-6">
+                    
+                        <Skeleton className="p-1 w-60 mb-1" />
+                    
+                   
+                        <Skeleton className="w-20 "  />
+                  
+                    </div>
+
+                  
+                      <Skeleton className="p-2 w-64" />
+                  
+                  </div>
+                  <Skeleton className="p-2 w-16 h-32" />
+                </div>
+                <div className=" bg-gray-300 flex justify-between items-center  p-4 rounded-md lg:w-96 w-full ">
+              
+
+                  <div className="">
+                    <div className="mb-6">
+                    
+                        <Skeleton className="p-1 w-60 mb-1" />
+                    
+                   
+                        <Skeleton className="w-20 "  />
+                  
+                    </div>
+
+                  
+                      <Skeleton className="p-2 w-64" />
+                  
+                  </div>
+                  <Skeleton className="p-2 w-16 h-32" />
+                </div>
+                <div className=" bg-gray-300 flex justify-between items-center  p-4 rounded-md lg:w-96 w-full ">
+              
+
+                  <div className="">
+                    <div className="mb-6">
+                    
+                        <Skeleton className="p-1 w-60 mb-1" />
+                    
+                   
+                        <Skeleton className="w-20 "  />
+                  
+                    </div>
+
+                  
+                      <Skeleton className="p-2 w-64" />
+                  
+                  </div>
+                  <Skeleton className="p-2 w-16 h-32" />
+                </div>
+                <div className=" bg-gray-300 flex justify-between items-center  p-4 rounded-md lg:w-96 w-full ">
+              
+
+                  <div className="">
+                    <div className="mb-6">
+                    
+                        <Skeleton className="p-1 w-60 mb-1" />
+                    
+                   
+                        <Skeleton className="w-20 "  />
+                  
+                    </div>
+
+                  
+                      <Skeleton className="p-2 w-64" />
+                  
+                  </div>
+                  <Skeleton className="p-2 w-16 h-32" />
+                </div>
+                <div className=" bg-gray-300 flex justify-between items-center  p-4 rounded-md lg:w-96 w-full ">
+              
+
+                  <div className="">
+                    <div className="mb-6">
+                    
+                        <Skeleton className="p-1 w-60 mb-1" />
+                    
+                   
+                        <Skeleton className="w-20 "  />
+                  
+                    </div>
+
+                  
+                      <Skeleton className="p-2 w-64" />
+                  
+                  </div>
+                  <Skeleton className="p-2 w-16 h-32" />
+                </div>
+                <div className=" bg-gray-300 flex justify-between items-center  p-4 rounded-md lg:w-96 w-full ">
+              
+
+                  <div className="">
+                    <div className="mb-6">
+                    
+                        <Skeleton className="p-1 w-60 mb-1" />
+                    
+                   
+                        <Skeleton className="w-20 "  />
+                  
+                    </div>
+
+                  
+                      <Skeleton className="p-2 w-64" />
+                  
+                  </div>
+                  <Skeleton className="p-2 w-16 h-32" />
+                </div>
+                <div className=" bg-gray-300 flex justify-between items-center  p-4 rounded-md lg:w-96 w-full ">
+              
+
+                  <div className="">
+                    <div className="mb-6">
+                    
+                        <Skeleton className="p-1 w-60 mb-1" />
+                    
+                   
+                        <Skeleton className="w-20 "  />
+                  
+                    </div>
+
+                  
+                      <Skeleton className="p-2 w-64" />
+                  
+                  </div>
+                  <Skeleton className="p-2 w-16 h-32" />
+                </div>
+                <div className=" bg-gray-300 flex justify-between items-center  p-4 rounded-md lg:w-96 w-full ">
+              
+
+                  <div className="">
+                    <div className="mb-6">
+                    
+                        <Skeleton className="p-1 w-60 mb-1" />
+                    
+                   
+                        <Skeleton className="w-20 "  />
+                  
+                    </div>
+
+                  
+                      <Skeleton className="p-2 w-64" />
+                  
+                  </div>
+                  <Skeleton className="p-2 w-16 h-32" />
+                </div>
+                <div className=" bg-gray-300 flex justify-between items-center  p-4 rounded-md lg:w-96 w-full ">
+              
+
+                  <div className="">
+                    <div className="mb-6">
+                    
+                        <Skeleton className="p-1 w-60 mb-1" />
+                    
+                   
+                        <Skeleton className="w-20 "  />
+                  
+                    </div>
+
+                  
+                      <Skeleton className="p-2 w-64" />
+                  
+                  </div>
+                  <Skeleton className="p-2 w-16 h-32" />
+                </div>
+              </>
+            ) : (
+              data &&
               data.map(({ productName, productDescription, pricedesc }) => {
                 return (
                   <>
@@ -77,7 +275,8 @@ const Items = () => {
                     </div>
                   </>
                 );
-              })}
+              })
+            )}
           </div>
         </div>
         <Orders />
