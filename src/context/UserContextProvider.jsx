@@ -9,7 +9,7 @@ const UserContextProvider = ({children}) => {
    // Declare a state variable to store the loading status
    const [loading, setLoading] = useState(true);
  
-   const [ordType, setOrdType] = useState(false);
+   const [proDetails, setProDetails] = useState(false);
  
  
    const fetchData = async () => {
@@ -46,7 +46,7 @@ const UserContextProvider = ({children}) => {
    }, []);
 
   return (
-    <UserContext.Provider value={{navShow,setNavShow,data,ordType, setOrdType,loading}}>
+    <UserContext.Provider value={{navShow,setNavShow,data,proDetails, setProDetails,loading}}>
     {children}
     </UserContext.Provider>
   )
