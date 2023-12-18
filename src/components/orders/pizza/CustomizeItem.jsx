@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Veggie from "./Customize/Veggie";
 import { ImCancelCircle } from "react-icons/im";
-import UserContext from "../../context/UserContext";
+import UserContext from "../../../context/UserContext";
 
 const CustomizeItem = () => {
   const [veggie, setVeggie] = useState(true);

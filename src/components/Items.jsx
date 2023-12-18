@@ -1,11 +1,19 @@
 import React, { useContext } from "react";
 import Orders from "./Orders";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import UserContext from "../context/UserContext";
-import ProductDetails from "./orders/ProductDetails";
 import ItemSkeleton from "./skeleton/ItemSkeleton";
+import ProductDetails from "./orders/pizza/ProductDetails";
+import CalzonesDetails from "./orders/calzones/CalzonesDetails";
+import PastaDetails from "./orders/pasta/PastaDetails";
+import SidesDetails from "./orders/sides/SidesDetails";
+import SaladsDetails from "./orders/salads/SaladsDetails";
 const Items = () => {
+  const location = useLocation();
+  const pathParts = location.pathname.split('/');
+  const text = pathParts[1]; // This will be 'PIZZA' in your case
+
   const [h,setH]=useState()
   const [p,setP]=useState()
   const [data, setData] = useState(null);
@@ -15,12 +23,20 @@ const Items = () => {
   const { id } = useParams();
 
   const { proDetails, setProDetails } = useContext(UserContext);
-
+const [proId,setProId]=useState()
+  // const [pizzaRt,setPizzaRt]=useState(text==='PIZZA')
+  // const [calzonesRt,setCalzonesRt]=useState(text==='CALZONES')
+  // const [classicPouRt,setClassicPouRt]=useState(text==='CLASSIC%20POUTINE')
+  // const [pastaRt,setPastaRt]=useState(text==='PASTA')
+  // const [sidesRt,setSidesRt]=useState(text==='SIDES')
+  // const [saladsRt,setSaladsRt]=useState(text==='SALADS')
+  
   const fetchData = async () => {
     try {
       // Make a GET request to the API
       const response = await fetch(
         `https://onlinefoodordering.ca/RangerAPI/testorder/api/Product/ByCategoryId?categoryId=${id}`
+        
       );
 
       // Check if the response is ok
@@ -43,11 +59,13 @@ const Items = () => {
     }
   };
   useEffect(() => {
+    console.log(text);
     fetchData();
   }, [id]);
 
   return (
     <>
+    {/* <UserContext.Provider value={{setPizzaRt}}> */}
       <div className="py-4 sm:ml-64 flex justify-between items-start">
         <div className="p-2 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14  lg:w-2/3 cursor-pointer">
           <div className=" flex justify-between flex-wrap gap-3">
@@ -55,7 +73,7 @@ const Items = () => {
               <ItemSkeleton />
             ) : (
               data &&
-              data.map(({ productName, productDescription, pricedesc }) => {
+              data.map(({ productName, productDescription, pricedesc,productId }) => {
                 return (
                   <>
                     <div
@@ -63,6 +81,7 @@ const Items = () => {
                         setH(productName)
                         setP(productDescription)
                         setProDetails(true);
+                        setProId(productId)
                       }}
                       className=" bg-gray-300 flex text-black justify-between items-center p-4 rounded-md  lg:w-custom w-full "
                     >
@@ -91,7 +110,16 @@ const Items = () => {
         </div>
         <Orders />
       </div>
-      {proDetails ? <ProductDetails h={h} p={p} /> : null}
+      {proDetails?<ProductDetails proId={proId}  h={h} p={p} /> : null}
+      {/* {proDetails && pizzaRt ? <ProductDetails h={h} p={p} /> : null}
+      {proDetails && calzonesRt ? <CalzonesDetails  h={h}  /> : null}
+      {proDetails && classicPouRt ? <CalzonesDetails med={'1.25'} lrg={'2.00'} h={h}  /> : null}
+      {proDetails && pastaRt ? <PastaDetails h={h}  /> : null}
+      {proDetails && sidesRt ? <SidesDetails h={h}  /> : null}
+      {proDetails && saladsRt ? <SaladsDetails h={h}  /> : null} */}
+      
+
+      {/* </UserContext.Provider> */}
     </>
   );
 };
