@@ -9,31 +9,27 @@ const ProductDetails = ({ h, p, proId }) => {
     useContext(UserContext);
   const [size, setSize] = useState();
   const [crust, setCrust] = useState();
-  const [pasta, setPasta] = useState();
-  const getPasta =async()=>{
-  
-    try {
-      // Make a GET request to the API
-      const response = await fetch(
-        `https://onlinefoodordering.ca/RangerAPI/testorder/api/Variation/ByProductId?productId=${proId}`
-      );
 
-      // Check if the response is ok
-      if (response.ok) {
-        // Parse the response as JSON
-        const data = await response.json();
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedCrust, setSelectedCrust] = useState("");
+  const [note, setNote] = useState("");
 
-        // Set the data state
-        setPasta(data);
-      } else {
-        // Throw an error with the status text
-        throw new Error(response.statusText);
-      }
-    } catch (error) {
-      // Set the error state
-      console.log(error);
-    }
-  }
+  const handleAddToCart = () => {
+    // Collect all the selected values
+    const cartItem = {
+      size: selectedSize,
+      crust: selectedCrust,
+      note: note,
+      count: count,
+    };
+
+    // You can now do something with the cartItem, such as adding it to the cart state
+    console.log("Add to cart:", cartItem);
+
+    // Reset the customization state
+    setCustomize(false);
+  };
+
   const getCrust = async () => {
     try {
       // Make a GET request to the API
@@ -81,7 +77,6 @@ const ProductDetails = ({ h, p, proId }) => {
     }
   };
   useEffect(() => {
-    getPasta()
     getCrust();
     getSize();
   }, [proId]);
@@ -96,148 +91,117 @@ const ProductDetails = ({ h, p, proId }) => {
         ) : (
           <>
             {
-              <div className="lg:w-1/2 w-full lg:h-3/4 bg-gray-50 rounded-lg shadow-sm-light lg:p-4 shadow-gray-500 relative">
+              <div className="lg:w-1/2 w-full lg:h-3/4 bg-gray-50 rounded-lg shadow-sm-light lg:p-4 p-3 shadow-gray-500 relative">
                 <ImCancelCircle
                   size={25}
-                  className="absolute right-0 top-0"
+                  className="absolute right-0 top-0 cursor-pointer hover:text-red-500"
                   onClick={() => {
                     setProDetails(false);
                   }}
+                  aria-label="Close"
                 />
                 <div className=" flex gap-7 flex-col justify-between h-full">
-                  <div>
-                    <h1 className="text-2xl font-bold">{h}</h1>
-                    <p>{p}</p>
+                  <div className="p-4 bg-white rounded shadow-lg">
+                    <h1 className="text-2xl font-bold text-blue-700 mb-2">
+                      {h}
+                    </h1>
+                    <p className="text-gray-700">{p}</p>
                   </div>
-                  <div className="flex justify-between lg:gap-7 gap-1 ">
-                    {size?<fieldset className="border-2 px-3 w-1/2 border-black rounded-md">
-                      <legend>Size</legend>
+
+                  <div className="flex justify-between lg:gap-7 gap-1">
+                    <fieldset className="border-2  w-1/2 border-black rounded-md shadow-lg transition-all duration-500 ease-in-out">
+                      <legend className="text-lg font-semibold transition-colors duration-500 ease-in-out hover:text-blue-500">
+                        Size
+                      </legend>
                       <select
-                        className="w-full p-0 focus:border-none border-none focus:outline-none"
-                        name="cars"
-                        id="cars"
-                        style={{ border: "none" }} // Add this line
+                        className="w-full p-2 focus:border-none border-none focus:outline-none rounded-md focus:ring-0"
+                        name="size"
+                        id="size"
+                        value={selectedSize}
+                        onChange={(e) => setSelectedSize(e.target.value)}
                       >
-                        {size &&
-                          size.map(({ sizeName, sizePriceX1 }) => {
-                            return (
-                              <>
-                                <option value="saab">
-                                  {sizeName} {sizePriceX1}
-                                </option>
-                              </>
-                            );
-                          })}
+                        {size?.map(({ sizeName, sizePriceX1 }) => (
+                          <option
+                            value={sizeName}
+                            className="p-1 transition-all duration-500 ease-in-out hover:text-blue-500"
+                          >
+                            {sizeName} {sizePriceX1}
+                          </option>
+                        ))}
                       </select>
-                    </fieldset>:null}
-                    {pasta?<fieldset className="border-2 px-3 w-1/2 border-black rounded-md">
-                      <legend>DEMO</legend>
+                    </fieldset>
+
+                    <fieldset className="border-2  w-1/2 border-black rounded-md shadow-lg transition-all duration-500 ease-in-out">
+                      <legend className="text-lg font-semibold transition-colors duration-500 ease-in-out hover:text-blue-500">
+                        Crust
+                      </legend>
                       <select
-                        className="w-full p-0 focus:border-none border-none focus:outline-none"
-                        name="cars"
-                        id="cars"
-                        style={{ border: "none" }} // Add this line
+                        className="w-full p-2 focus:border-none border-none focus:outline-none rounded-md focus:ring-0"
+                        name="crust"
+                        id="crust"
+                        value={selectedCrust}
+                        onChange={(e) => setSelectedCrust(e.target.value)}
                       >
-                        {pasta &&
-                          pasta.map(({ name, price }) => {
-                            return (
-                              <>
-                            
-                                <option value="saab" className={price==0?'hidden':'block'}>
-                                  {name} {price}
-                                </option>
-                              </>
-                            );
-                          })}
+                        {crust?.map(({ modifierName, modifierCost }) => (
+                          <option value={modifierName}>
+                            {modifierName} (${modifierCost})
+                          </option>
+                        ))}
                       </select>
-                    </fieldset>:null}
-                    {pasta?<fieldset className="border-2 px-3 w-1/2 border-black rounded-md">
-                      <legend>DEMO</legend>
-                      <select
-                        className="w-full p-0 focus:border-none border-none focus:outline-none"
-                        name="cars"
-                        id="cars"
-                        style={{ border: "none" }} // Add this line
-                      >
-                        {pasta &&
-                          pasta.map(({ name, price }) => {
-                            return (
-                              <>
-                             
-                                <option value="saab" className={price==0?'block':'hidden'}>
-                                  {name} {price}
-                                </option>
-                              </>
-                            );
-                          })}
-                      </select>
-                    </fieldset>:null}
-                    {crust?<fieldset className="border-2 px-3 w-1/2 border-black rounded-md">
-                      <legend>Crust</legend>
-                      <select
-                        className="w-full p-0 border-0 "
-                        name="cars"
-                        id="cars"
-                      >
-                        {crust &&
-                          crust.map(({ modifierName, modifierCost }) => {
-                            return (
-                              <>
-                                <option value="volvo">
-                                  {modifierName} (${modifierCost})
-                                </option>
-                              </>
-                            );
-                          })}
-                      </select>
-                    </fieldset>:null}
+                    </fieldset>
                   </div>
-                {size?  <textarea
-                    className="w-full resize-none h-32 border-2 rounded-md focus:border-0 "
+
+                  <textarea
+                    className="w-full resize-none h-32 border-2 rounded-md focus:border-gray-400 focus:outline-none transition-all duration-500 ease-in-out"
                     name="note"
                     placeholder="Note"
-                  ></textarea>:null}
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                  ></textarea>
 
-                  {size?<div className="flex border-2 border-black w-min mx-auto rounded-md">
-                    <p
+                  <div className="flex border-2 border-black w-min mx-auto rounded-md">
+                    <button
                       onClick={() => {
                         if (count > 1) {
                           setCount(count - 1);
                         }
                       }}
-                      className="p-3 rounded-l-sm text-xl font-bold bg-green-500 text-white cursor-pointer select-none "
+                      className="p-3 rounded-l-sm text-xl font-bold bg-green-500 text-white cursor-pointer select-none hover:bg-green-700 transition duration-500 ease-in-out"
                     >
                       -
-                    </p>
+                    </button>
                     <p className="p-3">{count}</p>
-
-                    <p
-                      className="p-3 rounded-r-sm text-xl font-bold bg-green-500 text-white cursor-pointer select-none"
+                    <button
+                      className="p-3 rounded-r-sm text-xl font-bold bg-green-500 text-white cursor-pointer select-none hover:bg-green-700 transition duration-500 ease-in-out"
                       onClick={() => {
                         setCount(count + 1);
                       }}
                     >
                       +
-                    </p>
-                  </div>:null}
-                  <div className=" border-t-2 w-full flex justify-between lg:p-3">
+                    </button>
+                  </div>
+
+                  <div className="border-t-2 w-full flex flex-wrap-reverse gap-3 lg:gap-0   justify-between lg:p-3">
                     <button
-                      className="bg-green-500 text-white p-2 rounded-md"
+                      className="bg-green-500 w-full lg:w-auto text-white p-2 rounded-md hover:bg-green-700 transition duration-500 ease-in-out"
                       onClick={() => {
                         setProDetails(false);
                       }}
                     >
                       CANCEL
                     </button>
-                   { size?<button
-                      className="bg-yellow-400 text-white p-2 rounded-md"
+                    <button
+                      className="bg-yellow-400 w-full lg:w-auto text-white p-2 rounded-md hover:bg-yellow-600 transition duration-500 ease-in-out"
                       onClick={() => {
                         setCustomize(true);
                       }}
                     >
                       CUSTOMIZE
-                    </button>:null}
-                    <button className="bg-green-500 text-white p-2 rounded-md">
+                    </button>
+                    <button
+                      onClick={handleAddToCart}
+                      className="bg-green-500 w-full lg:w-auto text-white p-2 rounded-md hover:bg-green-700 transition duration-500 ease-in-out"
+                    >
                       ADD TO CART
                     </button>
                   </div>

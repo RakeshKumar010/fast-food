@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import Veggie from "./Customize/Veggie";
 import { ImCancelCircle } from "react-icons/im";
 import UserContext from "../../../context/UserContext";
 
@@ -9,9 +8,34 @@ const CustomizeItem = () => {
   const [meat, setMeat] = useState(false);
   const [cheese, setCheese] = useState(false);
   const [sauce, setSauce] = useState(false);
-  
   const { customize, setCustomize } = useContext(UserContext);
-  const veggieItems = [
+
+  const [selectedItems, setSelectedItems] = useState({
+    veggie: [],
+    meat: [],
+    cheese: [],
+    sauce: [],
+  });
+
+  const handleCheckboxChange = (category, item) => {
+    setSelectedItems((prevSelectedItems) => {
+      const updatedItems = { ...prevSelectedItems };
+      if (updatedItems[category].includes(item)) {
+        updatedItems[category] = updatedItems[category].filter(
+          (selectedItem) => selectedItem !== item
+        );
+      } else {
+        updatedItems[category] = [...updatedItems[category], item];
+      }
+      return updatedItems;
+    });
+  };
+
+  const handleAddToCartClick = () => {
+    console.log("Selected items:", selectedItems);
+    // Add logic to update cart or perform other actions with selected items
+  };
+    const veggieItems = [
     "ALMONDS $(0.99)",
     "BANANA PEPPER $(0.99)",
 
@@ -71,73 +95,105 @@ const CustomizeItem = () => {
   ];
   return (
     <>
-      <div className="lg:w-1/2 w-full lg:h-3/4 h-full overflow-y-scroll bg-gray-50 rounded-lg shadow-sm-light shadow-gray-500 relative">
-     
-        <div className="flex p-4 gap-6 border-b-2 border-black">
-          <Link className="select-none"
-            onClick={() => {
-              setVeggie(true);
-              setMeat(false);
-              
-              setCheese(false);
-            setSauce(false)
-            }}
-          >
-            VEGGIE
-          </Link>
-          <Link className="select-none"
-            onClick={() => {
-              setMeat(true);
-              setVeggie(false);
-              setCheese(false);
-            setSauce(false)
-
-            }}
-          >
-            MEAT
-          </Link>
-          <Link className="select-none"
-            onClick={() => {
-              setCheese(true);
-              setVeggie(false);
-              setMeat(false);
-            setSauce(false)
-
-            }}
-          >
-            CHEESE
-          </Link>
-          <Link className="select-none"
-           onClick={()=>{
-            setSauce(true)
-            setCheese(false);
-            setVeggie(false);
-            setMeat(false);
-          }}>SAUCE</Link>
+      <div className="lg:w-1/2 flex flex-col w-full lg:h-3/4 h-full overflow-y-scroll bg-gray-50 rounded-lg shadow-sm-light shadow-gray-500 relative">
+        <div className="flex p-4 gap-6 border-b-2 border-black sticky top-0 bg-white">
+          {["VEGGIE", "MEAT", "CHEESE", "SAUCE"].map((item) => (
+            <Link
+              key={item}
+              className="select-none"
+              onClick={() => {
+                setVeggie(item === "VEGGIE");
+                setMeat(item === "MEAT");
+                setCheese(item === "CHEESE");
+                setSauce(item === "SAUCE");
+              }}
+            >
+              {item}
+            </Link>
+          ))}
         </div>
         <div className="p-2">
-          {veggie ? <Veggie items={veggieItems} /> : null}
-          {meat ? <Veggie items={meatItems} /> : null}
-          {cheese ? <Veggie items={cheeseItem} /> : null}
-          {sauce ? <Veggie items={sauceItem } /> : null}
+          {veggie && (
+            <div className="space-y-2">
+              {veggieItems.map((item, index) => (
+                <label key={index} className="flex items-center space-x-3">
+                  <input
+                    type="checkbox"
+                    className="form-checkbox h-5 w-5 text-blue-600"
+                    onChange={() =>  handleCheckboxChange("veggie", item)}
+                  />
+                  <span className="text-gray-900 text-sm">{item}</span>
+                </label>
+              ))}
+            </div>
+          )}
+     
+          {meat && (
+            <div className="space-y-2">
+              {meatItems.map((item, index) => (
+                <label key={index} className="flex items-center space-x-3">
+                  <input
+                    type="checkbox"
+                    className="form-checkbox h-5 w-5 text-blue-600"
+                    onChange={() =>  handleCheckboxChange("meat", item)}
+                  />
+                  <span className="text-gray-900 text-sm">{item}</span>
+                </label>
+              ))}
+            </div>
+          )}
+     
+          {cheese && (
+            <div className="space-y-2">
+              {cheeseItem.map((item, index) => (
+                <label key={index} className="flex items-center space-x-3">
+                  <input
+                    type="checkbox"
+                    className="form-checkbox h-5 w-5 text-blue-600"
+                    onChange={() =>  handleCheckboxChange("cheese", item)}
+                  />
+                  <span className="text-gray-900 text-sm">{item}</span>
+                </label>
+              ))}
+            </div>
+          )}
+
+          {sauce && (
+            <div className="space-y-2">
+              {sauceItem.map((item, index) => (
+                <label key={index} className="flex items-center space-x-3">
+                  <input
+                    type="checkbox"
+                    className="form-checkbox h-5 w-5 text-blue-600"
+                    onChange={() =>  handleCheckboxChange("sauce", item)}
+                  />
+                  <span className="text-gray-900 text-sm">{item}</span>
+                </label>
+              ))}
+            </div>
+          )}
+      
         </div>
-        <div className=" border-t-2 w-full flex justify-between lg:p-3">
-                <button
-                  className="bg-green-500 text-white p-2 px-6 rounded-md"
-                  onClick={() => {
-                    setCustomize(false)
-                  }}
-                >
-                  BACK
-                </button>
-                
-                <button className="bg-green-500 text-white p-2 rounded-md">
-                  ADD TO CART
-                </button>
-              </div>
+        <div className="border-t-2 w-full flex justify-between lg:p-3 sticky  bottom-0 bg-white">
+          <button
+            className="bg-green-500 text-white p-2 px-6 rounded-md  hover:bg-green-700 transition duration-500 ease-in-out"
+            onClick={() => {
+              setCustomize(false);
+            }}
+          >
+            BACK
+          </button>
+          <button
+            className="bg-green-500 text-white p-2 rounded-md  hover:bg-green-700 transition duration-500 ease-in-out"
+            onClick={handleAddToCartClick}
+          >
+            ADD TO CART
+          </button>
+        </div>
       </div>
     </>
   );
 };
 
 export default CustomizeItem;
+

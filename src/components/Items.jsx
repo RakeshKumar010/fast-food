@@ -59,7 +59,6 @@ const [proId,setProId]=useState()
     }
   };
   useEffect(() => {
-    console.log(text);
     fetchData();
   }, [id]);
 
