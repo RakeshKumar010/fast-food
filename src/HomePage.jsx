@@ -13,11 +13,7 @@ const HomePage = () => {
     <SideBar/>
     <Items/>
     </>
-    // <div className='flex justify-between'>
-    // <SideBar/>
-    // <Items/>
-    // <Orders/>
-    // </div>
+  
   )
 }
 

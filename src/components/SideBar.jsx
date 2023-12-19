@@ -8,13 +8,13 @@ import {
   GiMilkCarton,
   GiFullPizza,
 } from "react-icons/gi";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
 
 import SideBarSkeleton from "./skeleton/SideBarSkeleton";
 const SideBar = () => {
-  const { navShow, data, loading } = useContext(UserContext);
+  const { navShow, data, loading,setNavShow } = useContext(UserContext);
   const arr = [
     GiFullPizza,
     IoIceCream,
@@ -42,7 +42,7 @@ const SideBar = () => {
         <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
           <ul className="space-y-2 font-medium">
             {loading ? (
-              <SideBarSkeleton/>
+              <SideBarSkeleton />
             ) : (
               data &&
               data.map(({ categoryDescription, id }) => {
@@ -50,7 +50,11 @@ const SideBar = () => {
                 iconIndex = (iconIndex + 1) % arr.length;
                 return (
                   <>
-                    <li>
+                    <li
+                      onClick={() => {
+                        setNavShow(!navShow);
+                      }}
+                    >
                       <Link
                         to={"/" + categoryDescription + "/" + id}
                         className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
