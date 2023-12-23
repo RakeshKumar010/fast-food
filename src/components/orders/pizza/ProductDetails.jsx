@@ -16,7 +16,7 @@ const ProductDetails = ({ h, p, proId }) => {
 
   const handleAddToCart = () => {
     // Collect all the selected values
-    const cartItem = {
+    const cartItem = {                   
       size: selectedSize,
       crust: selectedCrust,
       note: note,

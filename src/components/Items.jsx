@@ -24,12 +24,6 @@ const Items = () => {
 
   const { proDetails, setProDetails } = useContext(UserContext);
 const [proId,setProId]=useState()
-  // const [pizzaRt,setPizzaRt]=useState(text==='PIZZA')
-  // const [calzonesRt,setCalzonesRt]=useState(text==='CALZONES')
-  // const [classicPouRt,setClassicPouRt]=useState(text==='CLASSIC%20POUTINE')
-  // const [pastaRt,setPastaRt]=useState(text==='PASTA')
-  // const [sidesRt,setSidesRt]=useState(text==='SIDES')
-  // const [saladsRt,setSaladsRt]=useState(text==='SALADS')
   
   const fetchData = async () => {
     try {
@@ -64,7 +58,7 @@ const [proId,setProId]=useState()
 
   return (
     <>
-    {/* <UserContext.Provider value={{setPizzaRt}}> */}
+
       <div className="py-4 sm:ml-64 flex justify-between items-start">
         <div className="p-2 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14  lg:w-2/3 cursor-pointer">
           <div className=" flex justify-between flex-wrap gap-3">
@@ -96,9 +90,9 @@ const [proId,setProId]=useState()
                       </div>
 
                       <img
-                        src="https://i.pinimg.com/1200x/f4/77/3e/f4773e68cf3c8b68f804c8dce6a4d901.jpg"
+                        src="https://th.bing.com/th/id/OIG.Ax3ukRGE45Ox8RmWQugp?pid=ImgGn"
                         alt="..."
-                        className="lg:w-1/6 w-1/4 rounded-md lg:h-full"
+                        className="w-28 rounded-md "
                       />
                     </div>
                   </>
